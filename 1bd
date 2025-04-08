@@ -1,0 +1,27 @@
+use casos;
+create table cliente
+(
+cli_nome varchar(100) not null,
+cli_email varchar(150) not null unique
+);
+alter table cliente
+add column cli_telefone
+varchar (20);
+
+alter table cliente
+drop column 
+cli_telefone;
+
+alter table cliente
+modify column cli_nome
+varchar(150) not null;
+
+alter table cliente
+change column cli_nome
+cliente_nome varchar(150)
+not null;
+
+create table pedido
+(
+ped_cod varchar(100) not null
+)
