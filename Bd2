@@ -1,0 +1,80 @@
+show databases;
+
+create database biblioteca;
+
+use biblioteca;
+
+drop table tb_ccaategoria;
+
+create table tb_autor(
+aut_id int auto_increment primary key,
+aut_nome varchar(255),
+aut_nacionalidade varchar(150)
+);
+
+show tables;
+
+create table tb_categoria(
+cat_id int auto_increment primary key,
+caat_nome varchar(255),
+cat_descricao text
+);
+
+show tables;
+
+create table tb_membro(
+mem_id int auto_increment primary key,
+mem_nome varchar(255),
+mem_celular varchar(100),
+mem_residencial varchar(50),
+mem_email varchar(255),
+mem_email_secundario varchar(255),
+mem_rua varchar(255),
+mem_numero varchar(50),
+mem_cep varchar(30),
+mem_complemento varchar(150),
+mem_cidade varchar(255),
+mem_estado varchar(150),
+mem_uf char(2)
+);
+
+show tables;
+
+create table tb_livro(
+liv_id int auto_increment primary key,
+liv_titulo varchar(255),
+liv_ano_publicacao int,
+liv_preco decimal(10,2),
+liv_autid int,
+liv_catid int,
+foreign key (liv_autid) references tb_autor(aut_id),
+foreign key (liv_catid) references tb_categoria(cat_id)
+);
+
+create table tb_emprestimo(
+emp_id int auto_increment primary key,
+
+emp_retirada datetime,
+emp_devolucao datetime,
+emp_memid int,
+emp_livid int,
+foreign key (emp_memid) references tb_membro(mem_id),
+foreign key (emp_livid) references tb_livro(liv_id)
+);
+
+insert into tb_autor(aut_nome, aut_nacionalidade) values
+('Monteiro Lobato','Brasileiro');
+select * from tb_autor;
+
+insert into tb_categoria(caat_nome, cat_descricao) values
+('Gibi', 'Historia em quadrinhos');
+select * from tb_categoria;
+
+insert into tb_membro values
+(null, 'Illan Ramon',  '11986117020', '11959141279', 'illan.ramon@gmail.com', 'illan.ramon@icloud.com', 'Rua Denis Chaudet', '159',
+'05528-220', null, 'São Paulo', 'São Paulo', 'SP');
+select * from tb_membro;
+
+
+
+
